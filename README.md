@@ -46,7 +46,7 @@ yarn add seerbit-vuejs
 </template>
 
 <script type="text/javascript">
-    import seerbit from '../../src';
+    import seerbit from 'seerbit-vuejs';
     export default {
     components: {
         seerbit
