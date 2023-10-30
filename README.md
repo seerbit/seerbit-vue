@@ -10,7 +10,7 @@
 # SeerBit Checkout Wrapper for VueJS
 
 # Requirements
-This module was built and tested using VueJS 2.6.7
+This module was built and tested using VueJS 3.3.7
 
 ## Get Started
 
@@ -46,7 +46,7 @@ yarn add seerbit-vue
 </template>
 
 <script type="text/javascript">
-    import seerbit from 'seerbit-vuejs';
+    import seerbit from 'seerbit-vue';
     export default {
     components: {
         seerbit
