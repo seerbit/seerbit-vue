@@ -19,11 +19,11 @@ A simple way to add SeerBit to your VueJS application
 ## Install
 
 ```bash
-npm install --save seerbit-vuejs
+npm install --save seerbit-vue
 ```
 
 ```bash
-yarn add seerbit-vuejs
+yarn add seerbit-vue
 ```
 
 ## Usage
