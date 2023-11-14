@@ -1,5 +1,6 @@
-<script type="text/javascript">
-export default {
+import { openBlock, createElementBlock, normalizeStyle, createElementVNode } from 'vue';
+
+var script = {
   name:"SeerBitCheckout",
   props: {
     version: {
@@ -114,8 +115,8 @@ export default {
           callback();
         };
         script.onerror = function() {
-          console.error('Error loading ' + script.src)
-        }
+          console.error('Error loading ' + script.src);
+        };
       }
     },
     SeerBitCheckout() {
@@ -145,12 +146,11 @@ export default {
     }
   }
 };
-</script>
 
-<template>
-  <div
-    :style="{ 
-      display: flex,
+function render(_ctx, _cache, $props, $setup, $data, $options) {
+  return (openBlock(), createElementBlock("div", {
+    style: normalizeStyle({ 
+      display: _ctx.flex,
       width: '100vw',
       height: '100vh',
       position: 'absolute',
@@ -161,12 +161,12 @@ export default {
       alignItems: 'center',
       alignContent: 'center',
       backgroundColor: 'white',
-      marginLeft: auto,
-      marginRight: auto,
-    }"
-  >
-    <button
-      :style="{ 
+      marginLeft: _ctx.auto,
+      marginRight: _ctx.auto,
+    })
+  }, [
+    createElementVNode("button", {
+      style: { 
         alignSelf: 'center',
         backgroundColor:'#263a81ee', 
         color: '#ffffff', 
@@ -182,8 +182,13 @@ export default {
         borderRadius: '10px',
         border: '0 transparent',
         fontSize: '16px'
-      }"
-      v-on:click="SeerBitCheckout">Pay with SeerBit
-    </button>
-  </div>
-</template>
+      },
+      onClick: _cache[0] || (_cache[0] = (...args) => ($options.SeerBitCheckout && $options.SeerBitCheckout(...args)))
+    }, "Pay with SeerBit ")
+  ], 4 /* STYLE */))
+}
+
+script.render = render;
+script.__file = "src/seerbit.vue";
+
+export { script as default };

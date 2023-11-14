@@ -1,23 +1,19 @@
 {
   "name": "seerbit-vue",
-  "version": "2.1.0",
-  "description": "SeerBit VueJS Component for Vue 3.x.",
-  "main": "dist/seerbit-vue.min.js",
-  "scripts": {
-    "lint": "eslint src --ext=js,vue  || exit 0",
-    "lint:fix": "eslint src --ext=js,vue --fix  || exit 0",
-    "dev": "webpack-dev-server ./examples/commonjs/app.js --env=webpack.dev  --content-base --hot",
-    "dist": "webpack --env=webpack.dist --mode=production",
-    "build": "webpack ./src/index.js --output ./examples/app.bundle.js --env=webpack.dev --mode production"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/seerbit/seerbit-vue2.git"
-  },
+  "version": "3.1.0",
+  "description": "SeerBit VueJS Component for Vue 3.x.x",
+  "private": true,
+  "main": "dist/seerbit-vue3.mjs",
+  "type": "module",
   "files": [
-    "dist",
-    "src"
+    "dist/*"
   ],
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "build": "rollup -c",
+    "lint": "vue-cli-service lint",
+    "prod": "vue-cli-service --mode prod build"
+  },
   "keywords": [
     "SeerBit",
     "Vue",
@@ -27,30 +23,41 @@
   ],
   "author": "SeerBit",
   "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/seerbit/seerbit-vue2/issues"
+  "dependencies": {
+    "core-js": "^3.8.3",
+    "vue": "^3.2.13"
   },
-  "homepage": "",
   "devDependencies": {
-    "@babel/cli": "^7.23.0",
-    "@babel/core": "^7.23.2",
-    "@babel/preset-env": "^7.23.2",
-    "babel-loader": "^9.1.3",
-    "css-loader": "^6.8.1",
-    "eslint": "^8.52.0",
-    "eslint-config-vue": "^2.0.2",
-    "eslint-plugin-vue": "^9.18.1",
-    "eslint-webpack-plugin": "^4.0.1",
-    "standard": "^17.1.0",
-    "uglifyjs-webpack-plugin": "^2.2.0",
-    "vue": "^3.3.7",
-    "vue-loader": "^15.11.1",
-    "vue-template-compiler": "^2.7.15",
-    "webpack": "^5.89.0",
-    "webpack-cli": "^5.1.4",
-    "webpack-dev-server": "^4.15.1"
+    "@babel/core": "^7.12.16",
+    "@babel/eslint-parser": "^7.12.16",
+    "@vue/cli-plugin-babel": "~5.0.0",
+    "@vue/cli-plugin-eslint": "~5.0.0",
+    "@vue/cli-service": "~5.0.0",
+    "eslint": "^7.32.0",
+    "eslint-plugin-vue": "^8.0.3",
+    "rollup": "^4.3.0",
+    "rollup-plugin-css-only": "^4.5.2",
+    "rollup-plugin-peer-deps-external": "^2.2.4",
+    "rollup-plugin-vue": "^6.0.0"
   },
-  "peerDependencies": {
-    "vue": "^3.3.7"
-  }
+  "eslintConfig": {
+    "root": true,
+    "env": {
+      "node": true
+    },
+    "extends": [
+      "plugin:vue/vue3-essential",
+      "eslint:recommended"
+    ],
+    "parserOptions": {
+      "parser": "@babel/eslint-parser"
+    },
+    "rules": {}
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead",
+    "not ie 11"
+  ]
 }
