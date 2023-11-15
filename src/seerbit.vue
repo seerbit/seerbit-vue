@@ -10,10 +10,6 @@ export default {
       type: String,
       default: "SeerBitCheckoutButton"
     },
-    autoCheckout: {
-      type: Boolean,
-      default: false
-    },
     publicKey: {
       type: String,
       required: true
@@ -21,7 +17,6 @@ export default {
     description: {
       type: String,
       required: false,
-      default:"Payment",
     },
     vendorId: {
       type: String,
@@ -37,13 +32,13 @@ export default {
     },
     fullName: {
       type: String,
-      default: ""
+      required: false
     },
     amount: {
       type: String,
       required: true
     },
-    reference: {
+    tranref: {
       type: String,
       required: true
     },
@@ -55,15 +50,34 @@ export default {
       type: String,
       default: "NGN"
     },
+    planId: {
+      type: String,
+      required: false,
+    },
+    pocketRef: {
+      type: String,
+      required: false,
+    },
+    setAmountByCustomer: {
+      type: Boolean,
+      required: false,
+      default: false,
+    },
+    tokenize: {
+      type: Boolean,
+      required: false,
+      default: false
+    },
+    closePrompt: {
+      type: Boolean,
+      required: false,
+      default: false
+    },
     customization: {
       type: Object,
       default: function() {
         return {};
       }
-    },
-    clientappcode: {
-      type: String,
-      default: ""
     },
     callbackurl: {
       type: String,
@@ -128,16 +142,19 @@ export default {
           full_name: this.fullName,
           description: this.description,
           amount: this.amount,
-          tranref: this.reference,
+          tranref: this.tranref,
           callbackurl: this.callbackurl,
           callback: this.onCallback,
           close: this.onCloseCheckout,
           country: this.country,
           currency: this.currency,
           customization: this.customization,
-          clientappcode: this.clientappcode,
           setAmountByCustomer: this.setAmountByCustomer,
           vendorId: this.vendorId,
+          tokenize: this.tokenize,
+          pocketRef: this.pocketRef,
+          planId: this.planId,
+          closePrompt: this.closePrompt
         };
 
         window.SeerbitPay(checkoutOptions, this.onCallback, this.onCloseCheckout);

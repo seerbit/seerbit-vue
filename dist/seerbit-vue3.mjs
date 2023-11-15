@@ -22,7 +22,6 @@ var script = {
     description: {
       type: String,
       required: false,
-      default:"Payment",
     },
     vendorId: {
       type: String,
@@ -38,13 +37,13 @@ var script = {
     },
     fullName: {
       type: String,
-      default: ""
+      required: false
     },
     amount: {
       type: String,
       required: true
     },
-    reference: {
+    tranref: {
       type: String,
       required: true
     },
@@ -55,6 +54,16 @@ var script = {
     currency: {
       type: String,
       default: "NGN"
+    },
+    setAmountByCustomer: {
+      type: Boolean,
+      required: false,
+      default: false,
+    },
+    tokenize: {
+      type: Boolean,
+      required: false,
+      default: false
     },
     customization: {
       type: Object,
@@ -129,7 +138,7 @@ var script = {
           full_name: this.fullName,
           description: this.description,
           amount: this.amount,
-          tranref: this.reference,
+          tranref: this.tranref,
           callbackurl: this.callbackurl,
           callback: this.onCallback,
           close: this.onCloseCheckout,
@@ -139,6 +148,8 @@ var script = {
           clientappcode: this.clientappcode,
           setAmountByCustomer: this.setAmountByCustomer,
           vendorId: this.vendorId,
+          tokenize: this.tokenize,
+          autoCheckout: this.autoCheckout
         };
 
         window.SeerbitPay(checkoutOptions, this.onCallback, this.onCloseCheckout);
