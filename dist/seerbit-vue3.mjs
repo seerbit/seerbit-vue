@@ -11,10 +11,6 @@ var script = {
       type: String,
       default: "SeerBitCheckoutButton"
     },
-    autoCheckout: {
-      type: Boolean,
-      default: false
-    },
     publicKey: {
       type: String,
       required: true
@@ -55,6 +51,14 @@ var script = {
       type: String,
       default: "NGN"
     },
+    planId: {
+      type: String,
+      required: false,
+    },
+    pocketRef: {
+      type: String,
+      required: false,
+    },
     setAmountByCustomer: {
       type: Boolean,
       required: false,
@@ -65,15 +69,16 @@ var script = {
       required: false,
       default: false
     },
+    closePrompt: {
+      type: Boolean,
+      required: false,
+      default: false
+    },
     customization: {
       type: Object,
       default: function() {
         return {};
       }
-    },
-    clientappcode: {
-      type: String,
-      default: ""
     },
     callbackurl: {
       type: String,
@@ -145,11 +150,12 @@ var script = {
           country: this.country,
           currency: this.currency,
           customization: this.customization,
-          clientappcode: this.clientappcode,
           setAmountByCustomer: this.setAmountByCustomer,
           vendorId: this.vendorId,
           tokenize: this.tokenize,
-          autoCheckout: this.autoCheckout
+          pocketRef: this.pocketRef,
+          planId: this.planId,
+          closePrompt: this.closePrompt
         };
 
         window.SeerbitPay(checkoutOptions, this.onCallback, this.onCloseCheckout);

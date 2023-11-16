@@ -1,6 +1,9 @@
 node_modules
 npm-debug.log
+build
+dist
 .idea
 package-lock.json
-examples
 yarn-lock.json
+yarn-debug.log
+yarn-error.log
