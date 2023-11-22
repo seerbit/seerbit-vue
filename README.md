@@ -45,13 +45,77 @@ mobileNo | <code>string</code> | Optional | None | The mobile number of the user
 | vendorId |  <code>string</code> | Optional | None | This is the vendorId of your business using pocket |
 | tokenize |  <code>boolean</code> | Optional | False | Tokenize card |
 | planId |  <code>string</code> | Optional | None | Subcription Plan ID |
-| customization |  <code>CustomizationModel</code> | Optional | CustomizationModel | CustomizationMode( borderColor: "#000000", backgroundColor: "#004C64", buttonColor: "#0084A0", paymentMethod:[PayChannel.card, PayChannel.account, PayChannel.transfer, PayChannel.momo], confetti: false , logo: "logo_url or base64") |
 | onCallback |  <code>Method</code> | Optional | None | Callback method if transaction was successful |
 | onCloseCheckout |  <code>Method</code> | Optional | None | Callback method if transaction was cancelled |
+| buttonText | <code>String</code> | Optional | Pay With SeerBit | Text to be displayed on launch button
+| autoCheckout | <code>boolean</code> | Optional | false | Launch checkout automatically if true, or display a pay button if false
+| customization |  <code>Object</code> | Optional | None | Customization e.g below
+
+```vue
+customization: {
+  theme: {
+    border_color: "#000000",
+    background_color: "#004C64",
+    button_color: "#0084A0",
+  },
+  payment_method: ["card", "account", "transfer", "wallet", "ussd"],
+  display_fee: true,
+  logo: "logo_url | base64",
+}
+```
 
 ## Usage
 
 ```vue
+<script type="text/javascript">
+import seerbit from "seerbit.vue";
+export default {
+  components: {
+    seerbit,
+  },
+  data() {
+    return {
+      publicKey: "SBTESTPUBK_t4G16GCA1O51AV0Va3PPretaisXubSw1",
+      fullName: "John Doe",
+      email: "johndoe@mail.com",
+      mobileNo: "",
+      amount: "5.00",
+      planId: "",
+      description: "",
+      productId: "",
+      pocketRef: "",
+      tokenize: "",
+      currency: "NGN",
+      customization: {
+        theme: {
+          border_color: "#000000",
+          background_color: "#004C64",
+          button_color: "#0084A0",
+        },
+        payment_method: ["card", "account", "transfer", "wallet", "ussd"],
+        display_fee: true, // true
+        display_type: "embed", //inline
+        logo: "logo_url | base64",
+      },
+      callbackurl: "",
+    };
+  },
+  computed: {
+    tranref() {
+      return Date.now().toString();
+    },
+  },
+  methods: {
+    onCallback: function (response) {
+      console.log(response);
+    },
+    onCloseCheckout: function () {
+      console.log("checkout closed");
+    },
+  },
+};
+</script>
+
 <template>
   <div class="container">
     <seerbit
@@ -61,9 +125,33 @@ mobileNo | <code>string</code> | Optional | None | The mobile number of the user
       :tranref="tranref"
       :onCallback="onCallback"
       :onCloseCheckout="onCloseCheckout"
+      :planId="planId"
+      :customization="customization"
+      :pocketRef="pocketRef"
+      :callbackurl="callbackurl"
+      :tokenize="tokenize"
+      :description="description"
+      :productId="productId"
+      :currency="currency"
+      :mobileNo="mobileNo"
+      :buttonText="buttonText"
     />
   </div>
 </template>
+
+<style>
+  .seerbitButton {
+    align-self: center;
+    background-color: #000000;
+    color: #ffffff;
+    font-weight: 400; 
+    cursor: pointer;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    font-size: 16px;
+  }
+</style>
 ```
 
 ## License

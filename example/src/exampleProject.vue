@@ -9,8 +9,28 @@ export default {
       publicKey: "SBTESTPUBK_t4G16GCA1O51AV0Va3PPretaisXubSw1",
       fullName: "John Doe",
       email: "johndoe@mail.com",
+      mobileNo: "",
       amount: "5.00",
-    }
+      planId: "",
+      description: "",
+      productId: "",
+      pocketRef: "",
+      tokenize: "",
+      currency: "NGN",
+      customization: {
+        theme: {
+          border_color: "#000000",
+          background_color: "#004C64",
+          button_color: "#0084A0",
+        },
+        payment_method: ["card", "account", "transfer", "wallet", "ussd"],
+        display_fee: true, 
+        logo: "logo_url | base64",
+      },
+      callbackurl: "",
+      buttonText: "Pay With SeerBit",
+      autoCheckout: false,
+    };
   },
   computed: {
     tranref() {
@@ -37,6 +57,31 @@ export default {
       :tranref="tranref"
       :onCallback="onCallback"
       :onCloseCheckout="onCloseCheckout"
+      :planId="planId"
+      :customization="customization"
+      :pocketRef="pocketRef"
+      :callbackurl="callbackurl"
+      :tokenize="tokenize"
+      :description="description"
+      :productId="productId"
+      :currency="currency"
+      :mobileNo="mobileNo"
+      :buttonText="buttonText"
+      :autoCheckout="true"
     />
   </div>
 </template>
+
+<style>
+  .seerbitButton {
+    align-self: center;
+    background-color: #000000;
+    color: #ffffff;
+    font-weight: 400; 
+    cursor: pointer;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    font-size: 16px;
+  }
+</style>
