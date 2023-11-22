@@ -67,7 +67,7 @@ export default {
       :currency="currency"
       :mobileNo="mobileNo"
       :buttonText="buttonText"
-      :autoCheckout="true"
+      :autoCheckout="false"
     />
   </div>
 </template>
