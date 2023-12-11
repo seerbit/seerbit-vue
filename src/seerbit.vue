@@ -1,14 +1,17 @@
 <script type="text/javascript">
+import SeerBitButton from './seerbitButton.vue';
 export default {
   name:"SeerBitCheckout",
+  components: {
+    SeerBitButton
+  },
   props: {
     version: {
       type: Number,
       default: 2
     },
-    seerBitCheckoutButton: {
+    buttonText: {
       type: String,
-      default: "SeerBitCheckoutButton"
     },
     publicKey: {
       type: String,
@@ -92,6 +95,11 @@ export default {
       type: Function,
       required: true,
       default: function() {}
+    },
+    autoCheckout: {
+      type: Boolean,
+      required: false,
+      default: false
     }
   },
   data() {
@@ -106,7 +114,11 @@ export default {
       });
     });
   },
-  mounted() {},
+  mounted() {
+    if (this.autoCheckout) {
+      this.SeerBitCheckout();
+    }
+  },
   methods: {
     loadScript(callback) {
       const script = document.createElement("script");
@@ -159,48 +171,13 @@ export default {
 
         window.SeerbitPay(checkoutOptions, this.onCallback, this.onCloseCheckout);
       });
-    }
+    },
   }
 };
 </script>
 
 <template>
-  <div
-    :style="{ 
-      display: flex,
-      width: '100vw',
-      height: '100vh',
-      position: 'absolute',
-      top: 0,
-      left: 0,
-      margin: 0,
-      justifyContent: 'center',
-      alignItems: 'center',
-      alignContent: 'center',
-      backgroundColor: 'white',
-      marginLeft: auto,
-      marginRight: auto,
-    }"
-  >
-    <button
-      :style="{ 
-        alignSelf: 'center',
-        backgroundColor:'#263a81ee', 
-        color: '#ffffff', 
-        width: '200px', 
-        height: '50px', 
-        fontWeight: 800, 
-        cursor: 'pointer',
-        justifyContent: 'center',
-        alignItems: 'center',
-        position: 'absolute',
-        top: '50%',
-        left: '45%',
-        borderRadius: '10px',
-        border: '0 transparent',
-        fontSize: '16px'
-      }"
-      v-on:click="SeerBitCheckout">Pay with SeerBit
-    </button>
-  </div>
+  <SeerBitButton v-if="!autoCheckout"
+    :buttonText="buttonText"
+    v-on:click="SeerBitCheckout"/>
 </template>

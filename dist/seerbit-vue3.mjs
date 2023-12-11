@@ -1,15 +1,37 @@
-import { openBlock, createElementBlock, normalizeStyle, createElementVNode } from 'vue';
+import { openBlock, createElementBlock, toDisplayString, resolveComponent, Fragment, createCommentVNode, createVNode } from 'vue';
+
+var script$1 = {
+  name:"SeerBitButton",
+  props: {
+    buttonText: {
+      type: String,
+      required: false,
+      default: "Pay With SeerBit"
+    },
+  },
+};
+
+const _hoisted_1 = { class: "seerbitButton" };
+
+function render$1(_ctx, _cache, $props, $setup, $data, $options) {
+  return (openBlock(), createElementBlock("button", _hoisted_1, toDisplayString($props.buttonText), 1 /* TEXT */))
+}
+
+script$1.render = render$1;
+script$1.__file = "src/seerbitButton.vue";
 
 var script = {
   name:"SeerBitCheckout",
+  components: {
+    SeerBitButton: script$1
+  },
   props: {
     version: {
       type: Number,
       default: 2
     },
-    seerBitCheckoutButton: {
+    buttonText: {
       type: String,
-      default: "SeerBitCheckoutButton"
     },
     publicKey: {
       type: String,
@@ -93,6 +115,11 @@ var script = {
       type: Function,
       required: true,
       default: function() {}
+    },
+    autoCheckout: {
+      type: Boolean,
+      required: false,
+      default: false
     }
   },
   data() {
@@ -107,7 +134,11 @@ var script = {
       });
     });
   },
-  mounted() {},
+  mounted() {
+    if (this.autoCheckout) {
+      this.SeerBitCheckout();
+    }
+  },
   methods: {
     loadScript(callback) {
       const script = document.createElement("script");
@@ -160,49 +191,21 @@ var script = {
 
         window.SeerbitPay(checkoutOptions, this.onCallback, this.onCloseCheckout);
       });
-    }
+    },
   }
 };
 
 function render(_ctx, _cache, $props, $setup, $data, $options) {
-  return (openBlock(), createElementBlock("div", {
-    style: normalizeStyle({ 
-      display: _ctx.flex,
-      width: '100vw',
-      height: '100vh',
-      position: 'absolute',
-      top: 0,
-      left: 0,
-      margin: 0,
-      justifyContent: 'center',
-      alignItems: 'center',
-      alignContent: 'center',
-      backgroundColor: 'white',
-      marginLeft: _ctx.auto,
-      marginRight: _ctx.auto,
-    })
-  }, [
-    createElementVNode("button", {
-      style: { 
-        alignSelf: 'center',
-        backgroundColor:'#263a81ee', 
-        color: '#ffffff', 
-        width: '200px', 
-        height: '50px', 
-        fontWeight: 800, 
-        cursor: 'pointer',
-        justifyContent: 'center',
-        alignItems: 'center',
-        position: 'absolute',
-        top: '50%',
-        left: '45%',
-        borderRadius: '10px',
-        border: '0 transparent',
-        fontSize: '16px'
-      },
-      onClick: _cache[0] || (_cache[0] = (...args) => ($options.SeerBitCheckout && $options.SeerBitCheckout(...args)))
-    }, "Pay with SeerBit ")
-  ], 4 /* STYLE */))
+  const _component_SeerBitButton = resolveComponent("SeerBitButton");
+
+  return (openBlock(), createElementBlock(Fragment, null, [
+    createCommentVNode(" <div\n    :style=\"{ \n      display: flex,\n      // width: '100vw',\n      // height: '100vh',\n      // position: 'absolute',\n      // top: 0,\n      // left: 0,\n      // margin: 0,\n      // justifyContent: 'center',\n      // alignItems: 'center',\n      // alignContent: 'center',\n      // backgroundColor: 'white',\n      // marginLeft: auto,\n      // marginRight: auto,\n    }\"\n  > "),
+    createVNode(_component_SeerBitButton, {
+      buttonText: $props.buttonText,
+      onClick: $options.SeerBitCheckout
+    }, null, 8 /* PROPS */, ["buttonText", "onClick"]),
+    createCommentVNode(" </div> ")
+  ], 2112 /* STABLE_FRAGMENT, DEV_ROOT_FRAGMENT */))
 }
 
 script.render = render;
