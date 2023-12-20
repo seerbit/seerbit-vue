@@ -1,6 +1,6 @@
 {
   "name": "seerbit-vue",
-  "version": "3.1.3",
+  "version": "3.1.4",
   "description": "SeerBit VueJS Component for Vue 3.x.x",
   "main": "dist/seerbit-vue3.mjs",
   "type": "module",
@@ -9,7 +9,7 @@
   ],
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "rollup -c",
+    "build": "rollup -c --bundleConfigAsCjs",
     "lint": "vue-cli-service lint",
     "prod": "vue-cli-service --mode prod build"
   },
