@@ -9,7 +9,7 @@
   ],
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "rollup -c",
+    "build": "rollup -c --bundleConfigAsCjs",
     "lint": "vue-cli-service lint",
     "prod": "vue-cli-service --mode prod build"
   },
