@@ -10,7 +10,7 @@ export default {
       fullName: "John Doe",
       email: "johndoe@mail.com",
       mobileNo: "",
-      amount: "5.00",
+      amount: "10.00",
       planId: "",
       description: "",
       productId: "",
