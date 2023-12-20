@@ -1,4 +1,4 @@
-import { openBlock, createElementBlock, toDisplayString, resolveComponent, Fragment, createCommentVNode, createVNode } from 'vue';
+import { openBlock, createElementBlock, toDisplayString, resolveComponent, createBlock, createCommentVNode } from 'vue';
 
 var script$1 = {
   name:"SeerBitButton",
@@ -198,14 +198,13 @@ var script = {
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_SeerBitButton = resolveComponent("SeerBitButton");
 
-  return (openBlock(), createElementBlock(Fragment, null, [
-    createCommentVNode(" <div\n    :style=\"{ \n      display: flex,\n      // width: '100vw',\n      // height: '100vh',\n      // position: 'absolute',\n      // top: 0,\n      // left: 0,\n      // margin: 0,\n      // justifyContent: 'center',\n      // alignItems: 'center',\n      // alignContent: 'center',\n      // backgroundColor: 'white',\n      // marginLeft: auto,\n      // marginRight: auto,\n    }\"\n  > "),
-    createVNode(_component_SeerBitButton, {
-      buttonText: $props.buttonText,
-      onClick: $options.SeerBitCheckout
-    }, null, 8 /* PROPS */, ["buttonText", "onClick"]),
-    createCommentVNode(" </div> ")
-  ], 2112 /* STABLE_FRAGMENT, DEV_ROOT_FRAGMENT */))
+  return (!$props.autoCheckout)
+    ? (openBlock(), createBlock(_component_SeerBitButton, {
+        key: 0,
+        buttonText: $props.buttonText,
+        onClick: $options.SeerBitCheckout
+      }, null, 8 /* PROPS */, ["buttonText", "onClick"]))
+    : createCommentVNode("v-if", true)
 }
 
 script.render = render;

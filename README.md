@@ -68,7 +68,7 @@ customization: {
 
 ```vue
 <script type="text/javascript">
-import seerbit from "seerbit.vue";
+import seerbit from "seerbit-vue";
 export default {
   components: {
     seerbit,
