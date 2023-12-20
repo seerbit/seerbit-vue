@@ -1,8 +1,7 @@
 {
   "name": "seerbit-vue",
-  "version": "3.1.0",
+  "version": "3.1.2",
   "description": "SeerBit VueJS Component for Vue 3.x.x",
-  "private": true,
   "main": "dist/seerbit-vue3.mjs",
   "type": "module",
   "files": [
