@@ -10,12 +10,12 @@ export default {
       fullName: "John Doe",
       email: "johndoe@mail.com",
       mobileNo: "",
-      amount: "10.00",
+      amount: "5.00",
       planId: "",
       description: "",
       productId: "",
       pocketRef: "",
-      tokenize: "",
+      tokenize: false,
       currency: "NGN",
       customization: {
         theme: {

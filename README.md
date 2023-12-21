@@ -84,7 +84,7 @@ export default {
       description: "",
       productId: "",
       pocketRef: "",
-      tokenize: "",
+      tokenize: false,
       currency: "NGN",
       customization: {
         theme: {
